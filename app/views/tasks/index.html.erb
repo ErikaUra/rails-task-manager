@@ -1,0 +1,24 @@
+<div class="container mt-5">
+  <h1>Tasks</h1>
+
+  <ul>
+    <% @tasks.each do |task| %>
+      <li>
+        <% if task.completed == true %>
+          <i class="fa-regular fa-square-check"></i>
+          <% else %>
+          <i class="fa-regular fa-square"></i>
+        <% end %>
+        <%= link_to task.title, task_path(task) %>
+        <%= link_to task_path(task), data: { turbo_method: 'delete', turbo_confirm: "Delete #{task.title}?" }, class: 'btn' do %>
+          <i class="fa-solid fa-trash-can"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <p><%= link_to new_task_path, class: "btn" do %>
+    <p>Create new task <i class="fa-solid fa-pen-to-square"></i></p>
+  <% end %></p>
+
+</div>
